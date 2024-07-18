@@ -100,7 +100,7 @@ public class reqresIn {
 
     @Test
     public void Delete() {
-        given()
+        when()
                 .delete("/api/users/2")
                 .then()
                 .statusCode(204);
@@ -145,19 +145,18 @@ public class reqresIn {
 
     @Test
     public void Update() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "morpheus");
-        map.put("job", "zion resident");
+        JSONObject jsOb = new JSONObject();
 
-        JSONObject jsOb = new JSONObject(map);
+        jsOb.put("name", "morpheus");
+        jsOb.put("job", "zion resident");
 
         given()
                 .header("Content-Type", "application/json")
                 .body(jsOb.toJSONString())
                 .when()
-                .post("/api/users/2")
+                .patch("/api/users/2")
                 .then()
-                .statusCode(201)
+                .statusCode(200)
                 .body("name", equalTo("morpheus"), "job", equalTo("zion resident"));
     }
 
