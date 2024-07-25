@@ -23,7 +23,7 @@ public class SOAPTest {
         }
         FileInputStream fileInputStream = new FileInputStream(file);
 
-        String requestBody = IOUtils.toString(fileInputStream, "UFT-8");
+        String requestBody = IOUtils.toString(fileInputStream, "UTF-8");
 
         given()
                 .contentType("text/xml")
