@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class SOAPTest {
 
@@ -32,6 +33,10 @@ public class SOAPTest {
                 .when()
                     .post("calculator.asmx")
                 .then()
-                    .statusCode(200);
+                    .statusCode(200)
+                .log()
+                    .all()
+                .and()
+                .body("//*:AddResult.text()", equalTo("5"));
     }
 }
